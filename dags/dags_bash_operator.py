@@ -12,6 +12,7 @@ from airflow.operators.bash import BashOperator
     - tags : Airflow UI 상에 있는 파란색 박스 
     - params : DAG 밑에 task 들을 두는데 , 공통적으로 필요한 parameter에 대해 입력하게 한다. 
 '''
+
 with DAG(
     dag_id="dags_bash_operator", 
     schedule="0 0 * * *",
@@ -30,4 +31,4 @@ with DAG(
         bash_command="echo $HOSTNAME",
     )
     # task 들의 수행순서, 관계 .. 명시
-    bash_t1 >> bash_t2
+    bash_t1 >> bash_t2  
