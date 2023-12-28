@@ -1,5 +1,5 @@
 from airflow import DAG 
-import datetime
+import datetime # C:\Program Files\Python38\Lib\datetime.py
 import pendulum
 from airflow.operators.python import PythonOperator
 
@@ -21,4 +21,4 @@ with DAG(
         task_id='py_t1',
         python_callable=select_fruit,
     )
-    py_t1
+    py_t1 
