@@ -1,24 +1,20 @@
 from airflow import DAG 
 import datetime # C:\Program Files\Python38\Lib\datetime.py
 import pendulum
-from airflow.operators.python import PythonOperator
+from airflow.decorators import task
 
-import random
-
-
+'''
+ - 수행날짜 24.01.01
+'''
 with DAG(
-    dag_id="dags_python_operator",
-    schedule="30 6 * * *",
-    start_date=pendulum.datetime(2023, 12, 28, tz="Asia/Seoul"),
-    catchup=False
+    dag_id="dags_python_show_templates",
+    schedule="30 9 * * *",
+    start_date=pendulum.datetime(2023, 12, 31, tz="Asia/Seoul"),
+    catchup=True
 ) as dag: 
-    def select_fruit():
-        fruit = ['사과','딸기','포도','귤']
-        rand_int = random.randint(0,3)
-        print(fruit[rand_int])
-    
-    py_t1 = PythonOperator(
-        task_id='py_t1',
-        python_callable=select_fruit,
-    )
-    py_t1 
+    @task(task_id="python_task")
+    def show_templates(**kwargs):
+        from pprint import pprint
+        pprint(kwargs)
+
+    show_templates()
