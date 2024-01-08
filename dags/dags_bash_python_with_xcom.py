@@ -37,8 +37,8 @@ with DAG(
         bash_command='echo PUSH_START '
                      '{{ti.xcom_push(key="bash_pushed", value=200)}} && '
                      'echo PUSH_COMPLETE'
-                     ,
-        do_xcom_push=False
+        #             ,
+        #do_xcom_push=False
     )
 
     @task(task_id='python_pull')
