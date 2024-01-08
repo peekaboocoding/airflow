@@ -23,8 +23,10 @@ with DAG(
         env={'PUSHED_VALUE':"{{ti.xcom_pull(key='bash_pushed')}}",
              'RETURN_VALUE':"{{ti.xcom_pull(task_ids='bash_push')}}"
              },
+        # echo $RETURN_VALUE 이 부분은 bash_command 의 마지막 부분이 출력됨. 
         bash_command="echo $PUSHED_VALUE && echo $RETURN_VALUE" ,
         do_xcom_push=False
+        
     )
 
     bash_push >> bash_pull
