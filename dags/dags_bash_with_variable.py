@@ -5,6 +5,7 @@ from airflow.models import Variable
 # 전역 공유변수 Variable
  ## xcom 은 특정 DAG 에서만 
  ## 모든 DAG 이 공유 
+# 전역 변수는 주로 상수로 지정 
 with DAG(
     dag_id="dags_bash_with_variable",
     schedule="10 9 * * *",
@@ -22,3 +23,5 @@ with DAG(
         task_id="bash_var_2",
         bash_command=f"echo variable:{{var.value.sample_key}}"
     )
+
+bash_var_1 >> bash_var_2
